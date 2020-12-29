@@ -25,8 +25,8 @@ export default class Adoption extends Component {
   }
 
   componentDidMount() {
-    this.getNextCat();
-    this.getNextDog();
+    this.nextCat();
+    this.nextDog();
     ApiService.getPeople().then((res) => {
       this.setState({ line: res });
     });
@@ -51,12 +51,12 @@ export default class Adoption extends Component {
       }
     }
   }
-  getNextCat = () => {
+  nextCat = () => {
     return ApiService.getCats().then((res) => {
       this.setState({ cat: res });
     });
   };
-  getNextDog = () => {
+  nextDog = () => {
     return ApiService.getDogs().then((res) => this.setState({ dog: res }));
   };
   setAdopt = () => {
@@ -158,8 +158,8 @@ export default class Adoption extends Component {
         {this.renderAdopt()}
         <PetList
           toggleAdopt={this.toggleAdopt}
-          getNextCat={this.getNextCat}
-          getNextDog={this.getNextDog}
+          nextCat={this.nextCat}
+          nextDog={this.nextDog}
           adopt={this.state.adopt}
           cat={this.state.cat}
           dog={this.state.dog}

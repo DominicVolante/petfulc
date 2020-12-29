@@ -20,7 +20,7 @@ export default class PetList extends Component {
             dequeue={ApiService.dequeueCats}
             adopt={this.props.adopt}
             pet={this.props.cat}
-            getNextPet={this.props.getNextCat}
+            getNextPet={this.props.nextCat}
             handleShow={this.props.handleShow}
             setInLine={this.props.setInLine}
             setLine={this.props.setLine}
@@ -37,7 +37,7 @@ export default class PetList extends Component {
             dequeue={ApiService.dequeueDogs}
             adopt={this.props.adopt}
             pet={this.props.dog}
-            getNextPet={this.props.getNextDog}
+            getNextPet={this.props.nextDog}
             handleShow={this.props.handleShow}
             setInLine={this.props.setInLine}
             setLine={this.props.setLine}
