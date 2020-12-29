@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PetList from "../components/PetList";
-import People from "../components/People";
-import PetfulApiService from "../services/petful-api";
+import PeopleList from "../components/PeopleList";
+import ApiService from "../services/ApiService";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
@@ -27,10 +27,10 @@ export default class Adoption extends Component {
   componentDidMount() {
     this.getNextCat();
     this.getNextDog();
-    PetfulApiService.getPeople().then((res) => {
+    ApiService.getPeople().then((res) => {
       this.setState({ line: res });
     });
-    PetfulApiService.getNextPerson()
+    ApiService.getNextPerson()
       .then((res) => this.setState({ nextInLine: res }))
       .catch((res) => this.setState({ error: res }));
   }
@@ -38,8 +38,8 @@ export default class Adoption extends Component {
     if (this.state.line[0] !== this.state.person) {
       if (this.timer === null && this.state.inLine === true) {
         this.timer = setInterval(() => {
-          this.handlePetQueue();
-          this.handleLineGeneration(this.state.nextInLine);
+          this.generatePetQueue();
+          this.generatePeopleQueue(this.state.nextInLine);
         }, 6000);
       }
     }
@@ -52,14 +52,12 @@ export default class Adoption extends Component {
     }
   }
   getNextCat = () => {
-    return PetfulApiService.getCats().then((res) => {
+    return ApiService.getCats().then((res) => {
       this.setState({ cat: res });
     });
   };
   getNextDog = () => {
-    return PetfulApiService.getDogs().then((res) =>
-      this.setState({ dog: res })
-    );
+    return ApiService.getDogs().then((res) => this.setState({ dog: res }));
   };
   setAdopt = () => {
     this.state.nextInLine === this.state.person &&
@@ -77,55 +75,55 @@ export default class Adoption extends Component {
   getAndSetLine = (res) => {
     this.setState({ line: res });
   };
-  toggleCat = () => {
+  deleteCat = () => {
     this.setState({ dequeueCat: !this.state.dequeueCat });
   };
-  toggleDog = () => {
+  deleteDog = () => {
     this.setState({ dequeueDog: !this.state.dequeueDog });
   };
   setPerson = (name) => {
     this.setState({ person: name });
   };
-  handlePetQueue = () => {
+  generatePetQueue = () => {
     if (this.state.dequeueCat === true) {
-      PetfulApiService.dequeueCats().then(() => {
-        PetfulApiService.getCats()
+      ApiService.dequeueCats().then(() => {
+        ApiService.getCats()
           .then((res) => {
             this.setState({ cat: res });
-            PetfulApiService.getNextPerson().then((res) =>
+            ApiService.getNextPerson().then((res) =>
               this.setState({ nextInLine: res })
             );
-            this.toggleCat();
-            this.toggleDog();
+            this.deleteCat();
+            this.deleteDog();
           })
           .catch((res) => {
             this.setState({ cat: res });
-            this.toggleCat();
-            this.toggleDog();
+            this.deleteCat();
+            this.deleteDog();
           });
       });
     } else if (this.state.dequeueDog === true) {
-      PetfulApiService.dequeueDogs().then(() => {
-        PetfulApiService.getDogs()
+      ApiService.dequeueDogs().then(() => {
+        ApiService.getDogs()
           .then((res) => {
             this.setState({ dog: res });
-            PetfulApiService.getNextPerson().then((res) =>
+            ApiService.getNextPerson().then((res) =>
               this.setState({ nextInLine: res })
             );
-            this.toggleCat();
-            this.toggleDog();
+            this.deleteCat();
+            this.deleteDog();
           })
           .catch((res) => {
             this.setState({ dog: res });
-            this.toggleCat();
-            this.toggleDog();
+            this.deleteCat();
+            this.deleteDog();
           });
       });
     }
   };
-  handleLineGeneration = (name) => {
-    PetfulApiService.postPeople({ person: name }).then(() => {
-      PetfulApiService.getPeople().then((res) => this.setState({ line: res }));
+  generatePeopleQueue = (name) => {
+    ApiService.postPerson({ person: name }).then(() => {
+      ApiService.getPeople().then((res) => this.setState({ line: res }));
     });
   };
   handleShow = () => {
@@ -148,15 +146,15 @@ export default class Adoption extends Component {
   render() {
     return (
       <div className="adoption-container">
-        <h1>Adoption</h1>
-        <People
+        <PeopleList
           line={this.state.line}
           inLine={this.state.inLine}
           setInLine={this.setInLine}
           setPerson={this.setPerson}
-          toggleCat={this.toggleCat}
+          deleteCat={this.deleteCat}
           setLine={this.setLine}
         />
+
         {this.renderAdopt()}
         <PetList
           toggleAdopt={this.toggleAdopt}

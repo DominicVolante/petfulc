@@ -1,6 +1,6 @@
 import config from "../config";
 
-const PetfulApiService = {
+const ApiService = {
   getCats() {
     return fetch(`${config.API_ENDPOINT}/pets/cats/next`).then((res) =>
       !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
@@ -16,7 +16,7 @@ const PetfulApiService = {
       !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
     );
   },
-  postPeople(person) {
+  postPerson(person) {
     return fetch(`${config.API_ENDPOINT}/people`, {
       method: "POST",
       headers: { "content-type": "application/json" },
@@ -45,4 +45,4 @@ const PetfulApiService = {
     });
   },
 };
-export default PetfulApiService;
+export default ApiService;

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PetfulApiService from "../services/petful-api";
+import ApiService from "../services/ApiService";
 import Pet from "./Pet";
 
 export default class PetList extends Component {
@@ -17,7 +17,7 @@ export default class PetList extends Component {
             title="Cat"
             key="Cat"
             toggleAdopt={this.props.toggleAdopt}
-            dequeue={PetfulApiService.dequeueCats}
+            dequeue={ApiService.dequeueCats}
             adopt={this.props.adopt}
             pet={this.props.cat}
             getNextPet={this.props.getNextCat}
@@ -34,7 +34,7 @@ export default class PetList extends Component {
             title="Dog"
             key="Dog"
             toggleAdopt={this.props.toggleAdopt}
-            dequeue={PetfulApiService.dequeueDogs}
+            dequeue={ApiService.dequeueDogs}
             adopt={this.props.adopt}
             pet={this.props.dog}
             getNextPet={this.props.getNextDog}

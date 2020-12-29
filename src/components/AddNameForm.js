@@ -1,24 +1,28 @@
 import React, { Component } from "react";
-import PetfulApiService from "../services/petful-api";
+import ApiService from "../services/ApiService";
 
-export default class AddForm extends Component {
+export default class AddNameForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { name } = e.target;
-    PetfulApiService.postPeople({ person: name.value }).then(
+    ApiService.postPerson({ person: name.value }).then(
       this.props.setLine(name.value)
     );
     this.props.setInLine();
     this.props.setPerson(name.value);
-    this.props.toggleCat();
+    this.props.deleteCat();
   };
   render() {
     return (
       <div className="add-form">
         <form onSubmit={(e) => this.handleSubmit(e)}>
-          <input className="name-input" name="name"></input>
+          <input
+            className="name-input"
+            name="name"
+            placeholder="Your Name"
+          ></input>
           <button className="btn" type="submit">
-            Add to Line
+            Get in Line
           </button>
         </form>
       </div>

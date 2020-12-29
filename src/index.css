@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
-/* page */
+
+/************ APP ************/
 
 * {
   box-sizing: border-box;
@@ -20,7 +21,7 @@ h1 {
   font-size: 3rem;
 }
 
-/* header */
+/************ HEADER ************/
 
 .Header {
   position: relative;
@@ -29,7 +30,7 @@ h1 {
   justify-content: center;
   align-items: center;
   background-color: #adf0d7;
-  padding: 0.5rem;
+  height: 80px;
 }
 
 .Header a {
@@ -43,7 +44,7 @@ h1 {
   margin-top: 10px;
 }
 
-/* adoption */
+/************ ADOPTION PAGE ************/
 
 .adoption-container {
   padding: 2rem;
@@ -71,18 +72,21 @@ h1 {
 }
 .pet-list .pet-container {
   margin: 1rem calc(1rem + 2vw);
-  background-color: #efefef;
+  background-color: #adf0d7;
   border-radius: 5px;
   display: flex;
   flex-flow: column;
-  max-width: 35vh;
+  max-width: 40vh;
   justify-content: space-between;
 }
 
 .pet-list .pet-container h1 {
   color: #4e5052;
-  margin: 0.5rem;
+  margin: 0.3rem;
 }
+
+/************ PEOPLE LIST ************/
+
 .people-container {
   margin: 0 calc(1rem + 2vw);
   display: flex;
@@ -94,15 +98,17 @@ h1 {
   list-style: none;
   padding: 0.25rem;
   color: #4e5052;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   text-transform: capitalize;
   font-weight: bold;
 }
 
+/************ PEOPLE FORM ************/
+
 .btn {
   border: 0.5px solid #e6e8eb;
-  padding: 8px;
-  border-radius: 5px;
+  padding: 5px;
+  border-radius: 0.5em;
   background-color: #fff;
   color: #4e5052;
   box-shadow: 1px 1px 1px #666;
@@ -120,21 +126,24 @@ h1 {
   margin: 10px;
   padding: 5px;
   border: 1px solid #666;
-  border-radius: 5px;
+  border-radius: 0.5em;
 }
+
+/************ PET CARDS ************/
 
 .pet-container li {
   list-style: none;
-  margin: 5px;
+  margin: 3px;
 }
 
 .pet-img {
   height: 35vh;
-  width: 35vh;
+  width: 40vh;
+  padding: 5px;
 }
 
 .pet-details-container {
-  padding: 10px;
+  padding: 5px;
   color: #222;
   font-size: 20px;
   display: flex;
@@ -146,15 +155,19 @@ h1 {
   text-align: left;
 }
 
+/************ MODAL ************/
+
 .popup-container {
   position: relative;
 }
 
 .popup {
   position: fixed;
-  width: 40vw;
-  height: 40vh;
-  top: 25vh;
+  border: 1px solid #efefef;
+  border-radius: 0.5em;
+  width: 50vw;
+  height: 50vh;
+  top: 10vh;
   left: 25vw;
   right: 25vw;
   bottom: 25vh;
@@ -162,7 +175,7 @@ h1 {
   z-index: 10;
   background-color: #efefef;
   color: #222;
-  font-size: 3rem;
+  font-size: 2rem;
   padding: 10px;
   display: flex !important;
   flex-flow: column;
@@ -172,14 +185,15 @@ h1 {
 }
 
 .popup .btn {
-  margin: 2rem;
-  padding: 1rem;
-  font-size: 2rem;
+  margin: 1.5rem;
+  padding: 0.8rem;
+  font-size: 1.5rem;
 }
 
-/* home */
-h1.welcome {
+/************** LANDING PAGE **************/
+h2.welcome {
   color: #4e5052;
+  margin-top: 50px;
 }
 .Homepage {
   position: relative;
@@ -200,5 +214,5 @@ h1.welcome {
 
 .process-container {
   padding: 2rem;
-  background-color: #efefef;
+  background-color: #adf0d7;
 }

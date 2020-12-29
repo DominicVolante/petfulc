@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-export default class Home extends Component {
+export default class LandingRoute extends Component {
   render() {
     return (
       <div className="Homepage">
         <div className="page-container">
-          <h1 className="welcome">Welcome to Petful Adoption Service</h1>
+          <h2 className="welcome">Welcome to Petful!</h2>
           <div className="process-container">
-            <h2>Welcome to Petful!</h2>
             <p>
               Petful is an animal shelter that treats all animals with fairness.
               We follow a strict "first-in-first-out" policy. The focus here is
@@ -30,11 +29,9 @@ export default class Home extends Component {
             <h3>
               Can you provide a forever home to an animal in need?
               <br />
-              Click{" "}
               <Link className="adopt" to="/adoption">
-                Adopt
-              </Link>{" "}
-              to begin the process!
+                Adopt Now!
+              </Link>
             </h3>
           </div>
         </div>

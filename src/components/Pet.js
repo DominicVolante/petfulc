@@ -1,17 +1,17 @@
 import React, { Component } from "react";
-import PetfulApiService from "../services/petful-api";
+import ApiService from "../services/ApiService";
 
 export default class Pet extends Component {
   state = {
     pet: {},
   };
 
-  dequeueAndGetNext = () => {
+  dequeueAndPeek = () => {
     this.props
       .dequeue()
       .then(this.props.getNextPet)
       .then(() => {
-        PetfulApiService.getPeople().then((res) => {
+        ApiService.getPeople().then((res) => {
           this.props.setLine(res);
         });
       })
@@ -22,11 +22,11 @@ export default class Pet extends Component {
       });
   };
 
-  renderAdoptButton = () => {
+  showButton = () => {
     return (
       this.props.adopt && (
-        <button className="btn" onClick={() => this.dequeueAndGetNext()}>
-          Adopt Me!
+        <button className="btn" onClick={() => this.dequeueAndPeek()}>
+          Pick Me!
         </button>
       )
     );
@@ -48,23 +48,16 @@ export default class Pet extends Component {
 
         <img className="pet-img" src={imageURL} alt="pet"></img>
         <div className="pet-details-container">
-          <h2>{name}</h2>
           <ul className="pet-details">
+            <h2>{name}</h2>
             <li>Breed: {breed} </li> <li>Gender: {gender}</li>{" "}
             <li>Age: {age}</li>
             <li>Story: {story}</li>
             <li>Description: {description}</li>
           </ul>
-          {this.renderAdoptButton()}
+          {this.showButton()}
         </div>
       </div>
     );
   }
 }
-// // "age": 3,
-// "breed": "Golden Retriever",
-// "description": "A smiling golden-brown golden retreiver listening to music.",
-// "gender": "Male",
-// "imageURL": "https://images.pexels.com/photos/33053/dog-young-dog-small-dog-maltese.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-// "name": "Zim",
-// "story": "Owner Passed away"
